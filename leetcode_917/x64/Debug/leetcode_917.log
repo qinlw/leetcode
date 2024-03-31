@@ -1,3 +1,0 @@
-﻿  leetcode_917.cpp
-E:\VS project\leetcode\leetcode_917\leetcode_917.hpp(21,1): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-  leetcode_917.vcxproj -> E:\VS project\leetcode\leetcode_917\x64\Debug\leetcode_917.exe
