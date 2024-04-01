@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.size() != t.size()) return false;
+
+        int count[26] = {};
+
+        for (auto e : s) count[e - 'a']++;
+        for (auto e : t) 
+        {
+            count[e - 'a']--;
+            if (count[e - 'a'] == -1) return false; 
+        }
+
+        return true;
+    }
+};
