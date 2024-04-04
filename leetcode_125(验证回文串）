@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool isAlpNUM(char ch)
+    {
+        if ((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')) return true;
+        return false;
+    }
+
+    bool isPalindrome(string s) {
+        int begin = 0;
+        int end = s.size() - 1;
+
+        for(int i = 0; i < s.size(); i++)
+            if (s[i] >= 'A' && s[i] <= 'Z') s[i] += 32;
+
+        while(begin < end)
+        {
+            while(begin < end && !isAlpNUM(s[begin])) begin++;
+            while(begin < end && !isAlpNUM(s[end])) end--;
+            if (s[begin] != s[end]) return false;
+            begin++;
+            end--;
+        }
+
+        return true;
+    }
+};
