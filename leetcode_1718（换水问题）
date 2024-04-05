@@ -1,0 +1,37 @@
+//方法一
+//时间复杂度：O(emptyBottles/numExchange)
+//空间复杂度：O(1)
+class Solution {
+public:
+    int numWaterBottles(int numBottles, int numExchange) {
+        int emptyBottles = numBottles;
+        int Drink = numBottles;
+        numBottles = 0;
+        
+        while (emptyBottles >= numExchange)
+        {
+            emptyBottles -= numExchange;
+            numBottles++;
+
+            if (emptyBottles < numExchange)
+            {
+                emptyBottles += numBottles;
+                Drink += numBottles;
+                numBottles = 0;
+            }
+        }
+
+        return Drink;
+    }
+};
+
+//方法二
+//时间复杂度：O(1)
+//空间复杂度：O(1)
+class Solution {
+public:
+    int numWaterBottles(int numBottles, int numExchange) {
+        return numBottles >= numExchange ? 
+        numBottles + 1 + (numBottles - numExchange) / (numExchange - 1) : numBottles;
+    }
+};
