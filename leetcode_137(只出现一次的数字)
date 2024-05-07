@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int bitsArray[32] = {};
+        for (auto e : nums)
+        {
+            for (int i = 0; i < 32; i++)
+            {
+                if (e & (1 << i)) bitsArray[i]++;
+            }
+        }
+
+        int ret = 0;
+        for (int i = 0; i < 32; i++)
+        {
+            if (bitsArray[i] % 3) ret |= (1 << i);
+        }
+
+        return ret;
+    }
+};
