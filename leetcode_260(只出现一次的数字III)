@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        int val = 0;
+        for (auto e : nums) val ^= e;
+
+        size_t i = 0;
+        for(; i < 32; i++)
+        {
+            if (val & (1 << i)) 
+                break;
+        }
+
+        int ret1 = 0, ret2 = 0;
+        for (auto e : nums)
+        {
+            if (e & (1 << i)) ret1 ^= e;
+            else ret2 ^= e;
+        }
+
+        vector<int> v;
+        v.push_back(ret1);
+        v.push_back(ret2);
+
+        return v;
+    }
+};
