@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isFind(TreeNode* child, TreeNode* parent)
+    {
+        if (!child || !parent) return false;
+        return (child->val == parent->val) 
+            || isFind(child, parent->left)
+            || isFind(child, parent->right);
+    }
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
+    {
+        if (p == root || q == root) return root; //一个为根节点
+        bool pleft = false, qleft = false;
+        if (isFind(p, root->left)) pleft = true;
+        if (isFind(q, root->left)) qleft = true;
+        if ((qleft && !pleft) || (!qleft && pleft)) return root; //一左一右
+        if (qleft && pleft) return lowestCommonAncestor(root->left, p, q);
+        if (!qleft && !pleft) return lowestCommonAncestor(root->right, p, q);
+        return root;
+    }
+};
