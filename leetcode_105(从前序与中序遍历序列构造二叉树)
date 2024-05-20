@@ -1,0 +1,22 @@
+class Solution {
+public:
+    TreeNode* _buildTree(vector<int>& preorder, vector<int>& inorder, int& rooti, int begin, int end){
+        TreeNode* root = new TreeNode(preorder[rooti]);
+        if (!root) return root;
+        
+        int div = 0;
+        while (inorder[div] != preorder[rooti]) div++;
+        //[begin, div - 1] div [div + 1, end]
+        if (div - begin) root->left = _buildTree(preorder, inorder, ++rooti, begin, div - 1);
+        else root->left = nullptr;
+        if (end - div) root->right = _buildTree(preorder, inorder, ++rooti, div + 1, end);
+        else root->right = nullptr;
+
+        return root;
+    }
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int rooti = 0;
+        return _buildTree(preorder, inorder, rooti, 0, preorder.size() - 1);
+    }
+};
