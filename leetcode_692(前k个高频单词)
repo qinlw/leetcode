@@ -1,0 +1,42 @@
+class Solution {
+public:
+    bool operator()(string s1, string s2)
+    {
+        return s1 < s2;
+    }
+
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        vector<string> v;
+        map<string, int> m;
+        int max = 0;
+
+        for (auto str : words)
+        {
+            map<string, int>::iterator it1 = m.find(str);
+            if (it1 != m.end()) it1->second++;
+            else m.insert(pair<string, int>(str, 1));
+            if (it1 != m.end() && it1->second > max) max = it1->second;
+        }
+        // for (pair<string, int> it : m)
+        // {
+        //     if (it.second > max) max = it.second;
+        // }
+
+        map<string, int>::iterator it2 = m.begin();
+        while (k)
+        {
+            if (it2 != m.end())
+            {
+                if ((*it2).second == max)
+                {
+                    v.push_back((*it2).first);
+                    k--;
+                }
+            }
+            it2++;
+            if (it2 == m.end()) { max--; it2 = m.begin(); }
+        }
+
+        return v;
+    }
+};
