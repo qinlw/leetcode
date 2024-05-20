@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> smallestK(vector<int>& arr, int k) {
+        vector<int> v;
+        sort(arr.begin(), arr.end());
+
+        int i = 0;
+        while (k) 
+        {
+            v.push_back(arr[i]);
+            ++i;
+            --k;
+        }
+
+        return v;
+    }
+};
