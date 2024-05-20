@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<bool> isArraySpecial(vector<int>& nums, vector<vector<int>>& queries) {
+        vector<bool> ret;
+        vector<int> count(nums.size());
+
+        for (size_t i = 1; i < nums.size(); ++i) 
+            count[i] = count[i - 1] + ((nums[i] ^ nums[i - 1] ^ 1) & 1);
+
+        for (auto q : queries)
+            ret.push_back(count[q[0]] == count[q[1]]);
+
+        return ret;
+    }
+};
