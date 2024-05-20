@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> v;
+        stack<TreeNode*> st;
+        TreeNode* cur = root;
+        TreeNode* lastNode = nullptr;
+
+        while(cur || !st.empty())
+        {
+            while (cur)
+            {
+                st.push(cur);
+                cur = cur->left;
+            }
+
+            TreeNode* top = st.top();
+            if (top->right == lastNode || top->right == nullptr)
+            {
+                v.push_back(top->val);
+                lastNode = top;
+                st.pop();
+            }
+            else 
+            {
+                cur = top->right;   
+            }
+        }
+
+        return v;
+    }
+};
