@@ -1,0 +1,34 @@
+class Solution {
+public:
+    Node* flatten(Node* head) {
+        if (!head) return head;
+        stack<Node*> st;
+        Node* cur = head;
+        Node* tail = nullptr;
+
+        while (cur)
+        {
+            while (cur->child)
+            {
+                if (cur->next) st.push(cur->next);
+                cur->next = cur->child;
+                cur->child->prev = cur;
+                cur->child = nullptr;
+                cur = cur->next;
+            }
+
+            if (!cur->next) tail = cur;
+            cur = cur->next;
+        }
+
+        while (!st.empty())
+        {
+            tail->next = st.top();
+            st.top()->prev = tail;
+            st.pop();
+            while (tail->next) tail = tail->next;
+        }
+
+        return head;
+    }
+};
