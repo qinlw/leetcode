@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> occurrencesOfElement(vector<int>& nums, vector<int>& queries, int x) {
+        vector<int> ans;
+        vector<int> index;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] == x) index.push_back(i);
+        }
+        for (int q : queries) {
+            if (q > index.size()) ans.push_back(-1);
+            else ans.push_back(index[q - 1]);
+        }
+
+        return ans;
+    }
+};
