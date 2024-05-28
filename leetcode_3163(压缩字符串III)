@@ -1,0 +1,59 @@
+class Solution {
+public:
+    string compressedString(string word) {
+        string comp = "";
+        for (int i = 0; i < word.size();)
+        {
+            int count = 0;
+            char flag = word[i];
+            int a = 0;
+            while (word[i] == flag)
+            {
+                ++i;
+                ++count;
+                a = 1;
+            }
+            while (count > 9)
+            {
+                comp += "9";
+                comp += flag;
+                count -= 9;
+            }
+            switch(count)
+            {
+            case 1:
+                comp += "1";
+                break;
+            case 2:
+                comp += "2";
+                break;
+            case 3:
+                comp += "3";
+                break;
+            case 4:
+                comp += "4";
+                break;
+            case 5:
+                comp += "5";
+                break;
+            case 6:
+                comp += "6";
+                break;
+            case 7:
+                comp += "7";
+                break;
+            case 8:
+                comp += "8";
+                break;
+            case 9:
+                comp += "9";
+                break;
+            default:
+                break;
+            }
+            comp += flag;
+        }
+        
+        return comp;
+    }
+};
