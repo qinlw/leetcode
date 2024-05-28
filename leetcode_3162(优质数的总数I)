@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int numberOfPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+        int ret = 0;
+        for (int n1 : nums1)
+        {
+            for (int n2 : nums2)
+            {
+                double a = (double)n1 / (double)(n2 * k);
+                int b = n1 / (n2 * k);
+                if (a == b) ++ret;
+            }
+        }
+        
+        return ret;
+    }
+};
